@@ -1,0 +1,48 @@
+#include <iostream>
+
+void quicksort(int values[], int began, int end)
+{
+	int a, b, principal, aux;
+	a = began;
+	b = end-1;
+	principal = values[(began + end) / 2];
+	while(a <= b)
+	{
+		while(values[a] < principal && a < end)
+		{
+			a++;
+		}
+		while(values[b] > principal && b > began)
+		{
+			b--;
+		}
+		if(a <= b)
+		{
+			aux = values[a];
+			values[a] = values[b];
+			values[b] = aux;
+			a++;
+			b--;
+		}
+	}
+	if(b > began)
+		quicksort(values, began, b+1);
+	if(a < end)
+		quicksort(values, a, end);
+}
+
+int main(int argc, char *argv[])
+{
+	int array[15] = {9,10,-1,3,6,2,1,-3,1,0,-2,15,8,-7,0};
+	for(int a = 0; a < 15; a++)
+	{
+		std::cout << array[a] << ' ';
+	}
+	std::cout << std::endl;
+	quicksort(array, 0, 15);
+	for(int a = 0; a < 15; a++)
+	{
+		std::cout << array[a] << ' ';
+	}
+	return 0;
+}
